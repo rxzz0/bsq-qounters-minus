@@ -5,7 +5,7 @@ This mod is an Oculus Quest port of [Caeden117's *Counters+*](https://github.com
 
 Configure your Qounters from the Mod Settings menu (Main menu → Settings (gear icon) → Mod Settings → Qounters-). After making changes, you can click the big blue _Test_ button to preview your configuration.
 
-Settings can be loaded from a PC *Counters+* configuration file! Rename your `CountersPlus.json` to `qounters-minus.json` and upload it through BMBF after installing Qounters-.
+Settings can be loaded from a PC *Counters+* configuration file! Rename your `CountersPlus.json` to `QountersMinus.json` and upload it through BMBF after installing Qounters-.
 
 Everything covered by the original base mod is supported, *except*:
 - The settings menu is store brand
