@@ -1,0 +1,40 @@
+{
+  "sharedDir": "shared",
+  "dependenciesDir": "extern",
+  "info": {
+    "name": "Qounters-",
+    "id": "qounters-minus",
+    "version": "1.1.8",
+    "url": "https://github.com/danrouse/bsq-qounters-minus",
+    "additionalData": {
+      "overrideSoName": "libQounterMinus.so"
+    }
+  },
+  "dependencies": [
+    {
+      "id": "beatsaber-hook",
+      "versionRange": "^3.6.7",
+      "additionalData": {
+        "extraFiles": [
+          "src/inline-hook"
+        ]
+      }
+    },
+    {
+      "id": "questui",
+      "versionRange": "^0.13.0",
+      "additionalData": {}
+    },
+    {
+      "id": "custom-types",
+      "versionRange": "^0.15.6",
+      "additionalData": {}
+    },
+    {
+      "id": "codegen",
+      "versionRange": "^0.19.3",
+      "additionalData": {}
+    }
+  ],
+  "additionalData": {}
+}
