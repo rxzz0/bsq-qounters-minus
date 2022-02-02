@@ -1,5 +1,5 @@
 How to recompile
 1. Clone source
-2. ``qpm-rust restore``
+2. qpm-rust restore
 3. powershell ./build.ps1
 4. ./buildqmod.ps1
