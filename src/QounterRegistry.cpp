@@ -43,6 +43,8 @@ void QountersMinus::QounterRegistry::Initialize() {
     if (!Qounter::Enabled) return;
     if (UnityEngine::Object::FindObjectOfType<PlayerDataModel*>()->dyn__playerData()->get_playerSpecificSettings()->get_noTextsAndHuds()) return;
     if (UnityEngine::Object::FindObjectOfType<PlayerDataModel*>()->dyn__playerData()->get_gameplayModifiers()->get_zenMode()) return;
+    auto AdvancedHUD = UnityEngine::Object::FindObjectOfType<PlayerDataModel*>()->dyn__playerData()->get_playerSpecificSettings()->get_advancedHud();
+    if (!AdvancedHUD) return;
 
     auto comboPanel = UnityEngine::GameObject::Find(StringW("ComboPanel"));
     auto multiplierCanvas = UnityEngine::GameObject::Find(StringW("MultiplierCanvas"));

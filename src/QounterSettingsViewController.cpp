@@ -8,7 +8,7 @@ void StartTestLevel(QountersMinus::QounterSettingsViewController* self) {
     auto simpleLevelStarters = UnityEngine::Resources::FindObjectsOfTypeAll<GlobalNamespace::SimpleLevelStarter*>();
     for (auto& starter : simpleLevelStarters) {
         if (starter->get_gameObject()->get_name()->Contains(StringW("PerformanceTestLevelButton"))) {
-            starter->dyn__level()->set_name(StringW("Qounters- Test"));
+            starter->dyn__level()->set_name(StringW("Qounters Test"));
             starter->dyn__gameplayModifiers()->dyn__demoNoObstacles() = true;
             starter->StartLevel();
             return;
