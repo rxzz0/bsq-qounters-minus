@@ -6,7 +6,7 @@ int GetNoteCount() {
     auto bocc = UnityEngine::Object::FindObjectOfType<GlobalNamespace::BeatmapObjectCallbackController*>();
     auto songTime = bocc->dyn__initData()->dyn_spawningStartTime();
     auto beatmapLinesData = reinterpret_cast<GlobalNamespace::BeatmapData*>(bocc->dyn__initData()->dyn_beatmapData())->dyn__beatmapLinesData();
-    for (auto const& i : beatmapLinesData) {
+    for (int i = 0; i < beatmapLinesData; i++) {
         auto beatmapLineData = beatmapLinesData[i];
         auto beatmapObjectsData = beatmapLinesData;
         for (int j = 0; j < beatmapObjectsData; j++) {
