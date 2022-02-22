@@ -105,7 +105,7 @@ namespace QountersMinus {
         Qounters::Spinometer::Register();
 
         QuestUI::Register::RegisterModSettingsViewController<QountersMinus::QounterSettingsViewController*>(
-            (ModInfo){"QountersMinus", VERSION}, "QountersMinus"
+            (ModInfo){"Qounters-Minus", VERSION}, "Qounters-Minus"
         );
     }
 }

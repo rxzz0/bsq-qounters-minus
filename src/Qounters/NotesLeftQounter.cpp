@@ -23,25 +23,27 @@ void QountersMinus::Qounters::NotesLeftQounter::Start() {
     CreateBasicText("");
     float yOffset = LabelAboveCount ? -30.0f : 0.0;
     float fontSize = LabelAboveCount ? 35.0f : 25.0f;
+    if (basicText) {
     basicText->set_fontSize(fontSize);
     basicText->get_rectTransform()->set_anchoredPosition(UnityEngine::Vector2(0.0f, yOffset));
+    }
 
     notesLeft = GetNoteCount();
     UpdateValue();
 }
 
 void QountersMinus::Qounters::NotesLeftQounter::UpdateValue() {
-    if (basicText) {
     basicText->set_text(StringW(
-        (LabelAboveCount ? "" : "Notes Remaining: ") + std::to_string(notesLeft)
+        std::string(LabelAboveCount ? "" : "Notes Remaining: ") + std::to_string(notesLeft)
     ));
-  } 
+    getLogger().info("On update: %d", GetNoteCount());
 }
 
 void QountersMinus::Qounters::NotesLeftQounter::OnNoteCut(GlobalNamespace::NoteData* data, GlobalNamespace::NoteCutInfo* info) {
     if (data->get_colorType() != GlobalNamespace::ColorType::None) {
         notesLeft--;
         UpdateValue();
+        getLogger().info("On note cut: %d", GetNoteCount());
     }
 }
 

@@ -1,10 +1,91 @@
-# Builds a .zip file for loading with BMBF
-$NDKPath = Get-Content $PSScriptRoot/ndkpath.txt
+Param(
+    [String]$qmodname="",
+    [Parameter(Mandatory=$false)]
+    [Switch]$clean
+)
 
-$buildScript = "$NDKPath/build/ndk-build"
-if (-not ($PSVersionTable.PSEdition -eq "Core")) {
-    $buildScript += ".cmd"
+if ($qmodName -eq "")
+{
+    echo "Give a proper qmod name and try again"
+    exit
+}
+$mod = "./mod.json"
+$modJson = Get-Content $mod -Raw | ConvertFrom-Json
+
+$filelist = @($mod)
+
+$cover = "./" + $modJson.coverImage
+if ((-not ($cover -eq "./")) -and (Test-Path $cover))
+{
+    $filelist += ,$cover
 }
 
-& $buildScript NDK_PROJECT_PATH=$PSScriptRoot APP_BUILD_SCRIPT=$PSScriptRoot/Android.mk NDK_APPLICATION_MK=$PSScriptRoot/Application.mk
-Compress-Archive -Path "./build/libQountersMinus.so", "./mod.json", "./extern/libs/libbeatsaber-hook_3_6_7.so" -DestinationPath "./QountersMinus1.1.8.qmod" -Force
+foreach ($mod in $modJson.modFiles)
+{
+    $path = "./build/" + $mod
+    if (-not (Test-Path $path))
+    {
+        $path = "./extern/libs/" + $mod
+    }
+    $filelist += $path
+}
+
+foreach ($lib in $modJson.libraryFiles)
+{
+    $path = "./build/" + $lib
+    if (-not (Test-Path $path))
+    {
+        $path = "./extern/libs/" + $mod
+    }
+    $filelist += $path
+}
+
+$bannedFiles = @("CreatorCache", "Patrons")
+
+if (Test-Path "./ExtraFiles")
+{
+    $extraEntries = Get-ChildItem ./ExtraFiles/* -Recurse
+
+    foreach ($entry in $extraEntries)
+    {
+        $mode = $entry | Select -Expand Mode
+        if ($mode.Contains("d"))
+        {
+            continue
+        }
+
+        $doContinue = 0
+        foreach ($ban in $bannedFiles)
+        {
+            if ($entry.Name.Contains($ban))
+            {
+                $doContinue = 1
+                break
+            }
+        }
+
+        if ($doContinue)
+        {
+            continue
+        }
+
+        $path = $entry | Select -expand fullname
+        $filelist += ,$path
+    }
+}
+else
+{
+    echo "No ExtraFiles Directory Found"
+}
+
+$zip = $qmodName + ".zip"
+$qmod = $qmodName + ".qmod"
+
+if (($clean.IsPresent) -and (Test-Path $qmod))
+{
+    echo "Making Clean Qmod"
+    Move-Item $qmod $zip -Force
+}
+
+Compress-Archive -Path $filelist -DestinationPath $zip -Update
+Move-Item $zip $qmod -Force
