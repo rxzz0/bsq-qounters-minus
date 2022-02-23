@@ -36,14 +36,12 @@ void QountersMinus::Qounters::NotesLeftQounter::UpdateValue() {
     basicText->set_text(StringW(
         std::string(LabelAboveCount ? "" : "Notes Remaining: ") + std::to_string(notesLeft)
     ));
-    getLogger().info("On update: %d", GetNoteCount());
 }
 
 void QountersMinus::Qounters::NotesLeftQounter::OnNoteCut(GlobalNamespace::NoteData* data, GlobalNamespace::NoteCutInfo* info) {
     if (data->get_colorType() != GlobalNamespace::ColorType::None) {
         notesLeft--;
         UpdateValue();
-        getLogger().info("On note cut: %d", GetNoteCount());
     }
 }
 
