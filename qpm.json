@@ -4,7 +4,7 @@
   "info": {
     "name": "qounters-minus",
     "id": "qounters-minus",
-    "version": "1.1.7",
+    "version": "1.1.8",
     "url": null,
     "additionalData": {
       "overrideSoName": "libqounters-minus.so"
@@ -13,7 +13,7 @@
   "dependencies": [
     {
       "id": "beatsaber-hook",
-      "versionRange": "^3.6.7",
+      "versionRange": "^3.6.8",
       "additionalData": {
         "extraFiles": [
           "src/inline-hook"
@@ -27,17 +27,17 @@
     },
     {
       "id": "questui",
-      "versionRange": "^0.13.1",
+      "versionRange": "^0.13.2",
       "additionalData": {}
     },
     {
       "id": "custom-types",
-      "versionRange": "^0.15.6",
+      "versionRange": "^0.15.7",
       "additionalData": {}
     },
     {
       "id": "codegen",
-      "versionRange": "^0.19.3",
+      "versionRange": "^0.20.0",
       "additionalData": {}
     }
   ],
