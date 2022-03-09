@@ -91,10 +91,10 @@ void QountersMinus::QounterRegistry::Initialize() {
 
      if (Qounter::ItalicText) {
         auto qounters = UnityEngine::Resources::FindObjectsOfTypeAll<Qounter*>();
-        for (auto const& i : qounters) {
-            auto texts = qounters[i].GetComponentsInChildren<TMPro::TextMeshProUGUI*>();
-            for (auto const& j : texts) {
-                texts[j].set_fontStyle(TMPro::FontStyles::Italic);
+        for (int i = 0; i < qounters.Length(); i++) {
+            auto texts = qounters[i]->GetComponentsInChildren<TMPro::TextMeshProUGUI*>();
+            for (int j = 0; j < texts.Length(); j++) {
+                texts[j]->set_fontStyle(TMPro::FontStyles::Italic);
             }
         }
     }

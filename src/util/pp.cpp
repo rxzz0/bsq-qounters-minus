@@ -83,7 +83,7 @@ float RatioOfMaxPP(float accuracy) {
 
 std::string SongIDToHash(std::string songID) {
     if (!songID.starts_with("custom_level_")) return "";
-    for (auto& c: songID) c = toupper(c);
+    for (auto& c : songID) c = toupper(c);
     return songID.substr(13);
 }
 
